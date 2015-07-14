@@ -95,10 +95,13 @@
       angular.module('pong', []);
       angular.module('pong')
       .controller('PongCtrl', function($scope, $http) {
+        $scope.getData = function(){
         $http.get('/leaderboard')
         .success(function(data) {
           $scope.leaderboard = data._embedded.players;
-        });
+          });
+        };
+        setInterval($scope.getData, 1000);
       });
     </script>
   </body>
